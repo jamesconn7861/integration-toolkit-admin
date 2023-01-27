@@ -4,8 +4,8 @@ import { useRoute } from 'vue-router';
 
 const _url: string =
   import.meta.env.MODE == 'development'
-    ? 'http://localhost:3000'
-    : 'https://integration-toolkit.pomeroy.com/api';
+    ? 'https://integration-toolkit.pomeroy.com/dev/api'
+    : 'https://integration-toolkit.pomeroy.com/dev/api';
 
 export const useUtilStore = defineStore('utils', {
   state: () => ({
