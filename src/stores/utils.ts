@@ -18,10 +18,10 @@ export const useUtilStore = defineStore('utils', {
     _token: undefined as string | undefined,
   }),
   actions: {
-    setUser(user: iUser) {
+    setUser(user: iUser | undefined) {
       this._user = user;
     },
-    setToken(token: string) {
+    setToken(token: string | undefined) {
       this._token = token;
     },
   },

@@ -1,35 +1,37 @@
 @import './base.css';
+@import 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.default-button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid black;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #233955;
+  text-align: center;
+  transition: all 0.2s;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  box-shadow: 2px 4px 5px 0px rgb(0 0 0 / 54%);
+}
 
-  font-weight: normal;
+.default-button:hover {
+  cursor: pointer;
 }
 
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: #00bd7e;
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 }
