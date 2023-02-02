@@ -43,6 +43,7 @@ export default defineComponent({
           }
         },
         (rej: any) => {
+          alert('Incorrect credentials');
           console.log('Incorrect credentials');
         },
       );

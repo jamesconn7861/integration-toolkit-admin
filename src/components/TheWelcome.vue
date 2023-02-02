@@ -1,86 +1,81 @@
 <script setup lang="ts">
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+import AccordianItem from './AccordianItem.vue';
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
-
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>Tooling</template>
-
-    This project is served and bundled with
-    <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank" rel="noopener">Volar</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a> and
-    <a href="https://on.cypress.io/component" target="_blank">Cypress Component Testing</a>.
-
-    <br />
-
-    More instructions are available in <code>README.md</code>.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Ecosystem</template>
-
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>, our official
-    Discord server, or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also subscribe to
-    <a href="https://news.vuejs.org" target="_blank" rel="noopener">our mailing list</a> and follow
-    the official
-    <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    twitter account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Support Vue</template>
-
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  <div id="home-container">
+    <div class="intro-container">
+      <!-- <h1>Integration Toolkit Admin</h1> -->
+      <h1>
+        Welcome to the integration toolkit admin website. Currently only vlan
+        and bench edits are supported.
+      </h1>
+    </div>
+    <div class="faq-container">
+      <h1>Frequently Asked Questions</h1>
+      <AccordianItem>
+        <template #questionText>How do I create an account?</template>
+        <template #answerText
+          >At this time the only solution to create an account is by request.
+          Please send all requests to
+          <a
+            href="mailto: james.conn@pomeroy.com?subject=Integration Toolkit Admin Account Request"
+            >James Conn</a
+          >. Please include your prefered username and the justification for
+          needing admin access. A self service option is also being developed
+          and will be completed shortly.</template
+        >
+      </AccordianItem>
+      <AccordianItem>
+        <template #questionText>How do I edit the vlan list?</template>
+        <template #answerText
+          >Click on the <RouterLink to="/vlans">Vlans</RouterLink> tab at the
+          top of the page. Find the vlan you would like to edit and click the
+          chevron in the top right corner. This will expand the menu. Make all
+          changes and click the checkmark in the bottom left hand corner to save
+          changes.
+          <b>You will need an admin account to view this page.</b></template
+        >
+      </AccordianItem>
+      <AccordianItem>
+        <template #questionText
+          >How do I reset my password or get help logging in?</template
+        >
+        <template #answerText
+          >At this time the only solution is sending a request to
+          <a
+            href="mailto: james.conn@pomeroy.com?subject=Integration Toolkit Admin Account Support"
+            >James Conn</a
+          >. Please include a description of the issue in the body of the
+          email.</template
+        >
+      </AccordianItem>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+#home-container {
+  padding: 1.5rem;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+#home-container h1 {
+  color: #fff;
+}
+
+.faq-container {
+  margin-top: 8rem;
+}
+
+/* .faq-container h1 {
+  
+} */
+</style>

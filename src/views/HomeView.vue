@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { useUtilStore } from '@/stores/utils';
-import { ref } from 'vue';
-import TheWelcome from '../components/TheWelcome.vue'
-
-const isLoggedIn = ref(useUtilStore().isLoggedIn);
+import TheWelcome from '../components/TheWelcome.vue';
 </script>
 
 <template>
   <main>
     <TheWelcome />
-    <router-link v-if="!isLoggedIn" to="/login"><button>Login</button></router-link>
   </main>
 </template>
+
+<style scoped>
+main {
+  height: 100%;
+  width: 100%;
+}
+</style>

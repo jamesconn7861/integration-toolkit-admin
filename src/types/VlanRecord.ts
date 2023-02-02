@@ -16,5 +16,6 @@ export enum VisibilityCodes {
 export enum DepartmentCodes {
   'Integration',
   'Depot',
+  'Asset Disposistion',
   'All',
 }

@@ -1,5 +1,6 @@
 @import './base.css';
-@import 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css';
+@import 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css';
+
 
 .default-button {
   display: inline-block;
@@ -28,6 +29,16 @@ a,
   text-decoration: none;
   color: #00bd7e;
   transition: 0.4s;
+}
+
+.nav-link {
+  color: #0aadd6;
+  border-radius: 5px;
+}
+
+.nav-link:hover {
+  background-color: #0aadd6;
+  color: #000000;
 }
 
 @media (hover: hover) {

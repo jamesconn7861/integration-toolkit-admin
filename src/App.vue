@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRouter } from 'vue-router';
 import { useUtilStore } from './stores/utils';
+import LoadingComponent from './components/Loading.vue';
 
 const router = useRouter();
 
-function handleLogout(e: MouseEvent) {
+function handleLogout(_e: MouseEvent) {
   useUtilStore().setToken(undefined);
   useUtilStore().setUser(undefined);
   document.cookie =
@@ -16,14 +17,31 @@ function handleLogout(e: MouseEvent) {
 
 <template>
   <nav>
-    <RouterLink to="/home">Home</RouterLink>
-    <RouterLink to="/vlans">Vlans</RouterLink>
-    <RouterLink to="/login" v-if="!useUtilStore().isLoggedIn">Login</RouterLink>
-    <button v-if="useUtilStore().isLoggedIn" @click="handleLogout" id="logout">
+    <RouterLink to="/home" class="nav-link">Home</RouterLink>
+    <RouterLink to="/vlans" class="nav-link">Vlans</RouterLink>
+    <RouterLink to="/benches" class="nav-link">Benches</RouterLink>
+    <RouterLink to="/login" class="nav-link" v-if="!useUtilStore().isLoggedIn"
+      >Login</RouterLink
+    >
+    <button
+      class="nav-link"
+      v-if="useUtilStore().isLoggedIn"
+      @click="handleLogout"
+      id="logout"
+    >
       Logout
     </button>
   </nav>
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <Suspense timeout="0">
+      <template #default>
+        <component :is="Component" :key="$route.path"></component>
+      </template>
+      <template #fallback>
+        <LoadingComponent />
+      </template>
+    </Suspense>
+  </RouterView>
 </template>
 
 <style scoped>

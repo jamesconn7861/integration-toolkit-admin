@@ -1,11 +1,11 @@
 <script lang="ts">
-import type { VisibilityCodes, VlanRecord } from '@/types';
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
+import type { BenchRecord, BenchVisCodes } from '@/types/BenchRecord';
 
 export default defineComponent({
   props: {
-    vlan: Object as PropType<VlanRecord>,
+    bench: Object as PropType<BenchRecord>,
   },
   data() {
     return {
@@ -37,27 +37,24 @@ export default defineComponent({
         '.card',
       ) as HTMLDivElement;
 
-      const updatedVlan: VlanRecord = {
-        name: (parentCard.querySelector('.name-input') as HTMLInputElement)
+      const updatedBench: BenchRecord = {
+        id: (parentCard.querySelector('.name-input') as HTMLInputElement).value,
+        switch: +(parentCard.querySelector('.switch-input') as HTMLInputElement)
           .value,
-        id: +(parentCard.querySelector('.vlan-input') as HTMLInputElement)
-          .value,
-        description: (
-          parentCard.querySelector('.desc-input') as HTMLInputElement
-        ).value,
-        department: +(
+        department: (
           parentCard.querySelector('.dept-input') as HTMLInputElement
         ).value,
-        protected: +(
-          parentCard.querySelector('.protect-input') as HTMLInputElement
-        ).value,
+        range: (parentCard.querySelector('.range-input') as HTMLInputElement)
+          .value,
+        locked: (parentCard.querySelector('.locked-input') as HTMLInputElement)
+          .value,
         visibility: (parentCard.querySelector('.vis-input') as HTMLInputElement)
-          .value as unknown as VisibilityCodes,
+          .value as unknown as BenchVisCodes,
         notes: (parentCard.querySelector('.note-input') as HTMLInputElement)
           .value,
       };
 
-      this.$emit('updateVlan', updatedVlan, this.vlan?.id);
+      this.$emit('updateBench', updatedBench, this.bench?.id);
     },
   },
 });
@@ -67,7 +64,9 @@ export default defineComponent({
   <div class="card-container">
     <div class="card blue">
       <div class="card-title">
-        <span class="card-title-text">{{ `${vlan?.name} | ${vlan?.id}` }}</span>
+        <span class="card-title-text">{{
+          `${bench?.id} | ${bench?.switch}`
+        }}</span>
         <i
           class="bx bx-chevron-down"
           id="expand-toggle"
@@ -76,23 +75,15 @@ export default defineComponent({
       </div>
       <div class="card-field name-field">
         <span class="input-description">Name: </span>
-        <input class="card-input name-input" :value="vlan?.name" />
+        <input class="card-input name-input" :value="bench?.id" />
       </div>
       <div class="card-field vlan-field">
-        <span class="input-description">Vlan: </span>
-        <input class="card-input vlan-input" :value="vlan?.id" />
+        <span class="input-description">Switch: </span>
+        <input class="card-input switch-input" :value="bench?.switch" />
       </div>
       <div class="card-field desc-field">
-        <span class="input-description">Description: </span>
-        <input class="card-input desc-input" :value="vlan?.description" />
-      </div>
-      <div class="card-field dept-field">
         <span class="input-description">Department: </span>
-        <input
-          class="card-input dept-input"
-          type="number"
-          :value="vlan?.department"
-        />
+        <input class="card-input dept-input" :value="bench?.department" />
         <i class="bx bx-info-circle field-info tooltip">
           <div class="left">
             <h4 class="tooltip-title">Department</h4>
@@ -104,40 +95,48 @@ export default defineComponent({
           </div>
         </i>
       </div>
-      <div class="card-field protect-field">
-        <span class="input-description">Protected: </span>
-        <input
-          class="card-input protect-input"
-          type="number"
-          :value="vlan?.protected"
-        />
+      <div class="card-field desc-field">
+        <span class="input-description">Range: </span>
+        <input class="card-input range-input" :value="bench?.range" />
+      </div>
+      <div class="card-field vis-field">
+        <span class="input-description">Visibility: </span>
+        <input class="card-input vis-input" :value="bench?.visibility" />
         <i class="bx bx-info-circle field-info tooltip">
           <div class="left">
-            <h4 class="tooltip-title">Protected</h4>
+            <h4 class="tooltip-title">Visibility</h4>
             <p>
-              Values can only include 0 (Not Protected) & 1 (Protected).
-              Protected vlans will show a warning before allowing the user to
-              change to the vlan.
+              Values can only include 'Visible', 'Hidden' & 'Admin Only'. Admin
+              only benches will only be able to be changed by an admin from this
+              website.
             </p>
             <i></i>
           </div>
         </i>
       </div>
-      <div class="card-field vis-field">
-        <span class="input-description">Visibility: </span>
-        <input class="card-input vis-input" :value="vlan?.visibility" />
+      <div class="card-field protect-field">
+        <span class="input-description">Locked Ports: </span>
+        <input class="card-input locked-input" :value="bench?.locked" />
         <i class="bx bx-info-circle field-info tooltip">
           <div class="left">
-            <h4 class="tooltip-title">Visibility</h4>
-            <p>Values can only include 'Visible' & 'Hidden'.</p>
+            <h4 class="tooltip-title">Locked Ports</h4>
+            <p>
+              Value must be a comma seperated list of values. A range can also
+              be added. For example, a bench that needs port 1 and 2 through 8
+              locked would be 1,2-8.
+            </p>
             <i></i>
           </div>
         </i>
       </div>
-      <div class="card-field note-field" :title="vlan?.notes">
+      <div class="card-field dept-field">
+        <span class="input-description">Notes: </span>
+        <input class="card-input note-input" :value="bench?.notes" />
+      </div>
+      <!-- <div class="card-field note-field" :title="vlan?.notes">
         <span class="input-description">Notes: </span>
         <input class="card-input note-input" :value="vlan?.notes" />
-      </div>
+      </div> -->
       <div class="card-actions-container">
         <i
           title="Update Vlan"
@@ -239,7 +238,7 @@ export default defineComponent({
 .field-info {
   font-size: 24px;
   position: absolute;
-  right: 1%;
+  right: 15px;
   top: 15%;
 }
 
@@ -298,7 +297,7 @@ export default defineComponent({
 }
 
 .input-description {
-  width: 95px;
+  width: 100px;
   display: inline-block;
   font-weight: 600;
   font-size: 14px;
@@ -307,7 +306,7 @@ export default defineComponent({
 input {
   border-radius: 5px;
   border: none;
-  width: 65%;
+  width: 62%;
   padding: 5px;
   transition: all 0.2s;
   box-shadow: 5px 5px 5px 0px rgb(0 0 0 / 54%);

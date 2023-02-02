@@ -1,9 +1,11 @@
 import { useUtilStore } from '@/stores/utils';
+import BenchesViewVue from '@/views/BenchesView.vue';
+import VlansViewVue from '@/views/VlansView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import LoginVue from '../views/Login.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL + 'test'),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/login',
@@ -11,9 +13,12 @@ const router = createRouter({
       component: LoginVue,
     },
     {
-      meta: {
-        requiresAuth: true,
+      path: '/',
+      redirect: (to) => {
+        return { path: '/home' };
       },
+    },
+    {
       path: '/home',
       name: 'Home',
       component: () => import('../views/HomeView.vue'),
@@ -27,7 +32,20 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/VlansView.vue'),
+      // component: () => import('../views/VlansView.vue'),
+      component: VlansViewVue,
+    },
+    {
+      meta: {
+        requiresAuth: true,
+      },
+      path: '/benches',
+      name: 'Benches',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      // component: () => import('../views/VlansView.vue'),
+      component: BenchesViewVue,
     },
   ],
 });
