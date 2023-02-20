@@ -85,13 +85,8 @@
           </select>
         </div>
         <div class="card-field protect-field">
-          <span class="input-description">Protected: </span>
-          <select
-            class="card-input protect-input"
-            v-model="currentBench.locked">
-            <option value="0">Not Protected</option>
-            <option value="1">Protected</option>
-          </select>
+          <span class="input-description">Locked ports: </span>
+          <input class="card-input desc-input" v-model="currentBench.locked" />
         </div>
         <div class="card-field vis-field">
           <span class="input-description">Visibility: </span>
@@ -289,7 +284,7 @@
   }
 
   .input-description {
-    width: 95px;
+    width: 100px;
     display: inline-block;
     font-weight: 600;
     font-size: 14px;

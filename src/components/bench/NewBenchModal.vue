@@ -7,7 +7,7 @@
       const bSwitch = ref<HTMLInputElement>();
       const bRange = ref<HTMLInputElement>();
       const bDepartment = ref<HTMLSelectElement>();
-      const bProtected = ref<HTMLSelectElement>();
+      const bLocked = ref<HTMLSelectElement>();
       const bVisible = ref<HTMLSelectElement>();
       const bNotes = ref<HTMLInputElement>();
 
@@ -16,7 +16,7 @@
         bSwitch,
         bRange,
         bDepartment,
-        bProtected,
+        bLocked,
         bVisible,
         bNotes,
       };
@@ -43,7 +43,7 @@
           range: this.bRange?.value,
           notes: this.bNotes?.value,
           department: this.bDepartment?.value,
-          protected: this.bProtected?.value,
+          locked: this.bLocked?.value,
           visibility: this.bVisible?.value,
         });
 
@@ -104,11 +104,8 @@
         </span>
 
         <span class="input-row">
-          <p class="input-title">Protected:</p>
-          <select ref="bProtected" class="form-select">
-            <option value="0" selected="true">False</option>
-            <option value="1">True</option>
-          </select>
+          <p class="input-title">Locked Ports:</p>
+          <input ref="bLocked" class="form-input" placeholder="Locked Ports" />
         </span>
 
         <span class="input-row">
