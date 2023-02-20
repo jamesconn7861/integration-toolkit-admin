@@ -9,13 +9,14 @@ export interface VlanRecord {
 }
 
 export enum VisibilityCodes {
-  'Hidden',
-  'Visible',
+  Visible = 1,
+  Hidden = 2,
+  Admin = 3,
 }
 
 export enum DepartmentCodes {
-  'Integration',
-  'Depot',
-  'Asset Disposistion',
-  'All',
+  Integration = 1,
+  'Asset Disposistion' = 2,
+  Depot = 3,
+  Universal = 4,
 }

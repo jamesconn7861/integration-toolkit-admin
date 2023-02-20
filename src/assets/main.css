@@ -1,5 +1,6 @@
 @import './base.css';
 @import 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 
 
 .default-button {
@@ -45,4 +46,159 @@ a,
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
   }
+}
+
+.msgbox-area {
+  font-size: inherit;
+  max-height: 60%;
+  position: fixed;
+  bottom: 15px;
+  left: 20px;
+  right: 20px;
+  z-index: 201;
+}
+
+.msgbox-box {
+  font-size: inherit;
+  color: #fff;
+  background-color: rgba(57, 74, 86, 0.7);
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  transition: opacity 256ms ease-in;
+  z-index: 201;
+}
+
+.msgbox-box.msgbox-box-hide {
+  opacity: 0;
+}
+
+.msgbox-box:last-child {
+  margin: 0;
+}
+
+.msgbox-content {
+  font-size: inherit;
+  padding: 15px 15px 15px 15px;
+  flex-shrink: 1;
+}
+
+.msgbox-command {
+  padding: 0 15px 15px 15px;
+  display: flex;
+}
+
+.msgbox-close {
+  color: #fff;
+  font-size: inherit;
+  text-decoration: none;
+  margin: 0 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  transition: color 64ms ease-out, text-shadow 64ms ease-out;
+}
+
+.msgbox-close:hover {
+  cursor: pointer;
+  color: #efefef;
+  text-shadow: 0 0 4px #fff;
+}
+
+.msgbox-close:first-child {
+  margin-left: auto;
+}
+
+.msgbox-close:last-child {
+  margin-right: 0;
+}
+
+@media (min-width: 301px) and (max-width: 400px) {
+  .msgbox-area {
+    left: 80px;
+    right: 80px;
+  }
+}
+
+@media (min-width: 301px) {
+  .msgbox-area {
+    width: 300px;
+    height: 0;
+    top: 15px;
+    left: auto;
+    right: 15px;
+  }
+}
+
+.msgbox-area {
+  font-size: 16px;
+}
+
+.msgbox-message-container {
+  text-align: center;
+  background-color: #fff;
+  padding: 2rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+.msgbox-message-container h1,
+.msgbox-message-container h3 {
+  font-weight: normal;
+  padding: 0.5rem 1rem;
+  margin: 0;
+}
+
+.msgbox-message-container h1:first-child,
+.msgbox-message-container h3:first-child {
+  padding-top: 0;
+}
+
+.msgbox-message-container h1:last-child,
+.msgbox-message-container h3:last-child {
+  padding-bottom: 0;
+}
+
+.msgbox-message-container p {
+  padding: 0.5rem 1rem;
+  margin: 0;
+}
+
+.msgbox-message-container p:first-child {
+  padding-top: 0;
+}
+
+.msgbox-message-container p:last-child {
+  padding-bottom: 0;
+}
+
+.msgbox-message-button {
+  font-size: 18px;
+  font-family: inherit;
+  color: white;
+  background-color: #387cdc;
+  width: 250px;
+  border: solid 2px #2263bf;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 0.4rem #2263bf;
+  transition: background-color 64ms ease-out, box-shadow 64ms ease-out, transform 64ms ease-out;
+}
+
+.msgbox-message-button:hover,
+.msgbox-message-button:focus,
+.msgbox-message-button:active {
+  background-color: #4e8ae0;
+}
+
+.msgbox-message-button:active {
+  background-color: #256ed5;
+  box-shadow: 0 0 #2263bf;
+  transform: translateY(0.4rem);
 }

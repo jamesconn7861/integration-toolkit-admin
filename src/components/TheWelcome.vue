@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AccordianItem from './AccordianItem.vue';
+  import AccordianItem from './faq/AccordianItem.vue';
 </script>
 
 <template>
@@ -10,6 +10,12 @@ import AccordianItem from './AccordianItem.vue';
         Welcome to the integration toolkit admin website. Currently only vlan
         and bench edits are supported.
       </h1>
+      <h2>
+        While this website is currently "working", there are many failsafes /
+        validation issues left to fix. You may be able to submit unvalidated
+        data which could throw unexpected errors. Double check all data before
+        submitting.
+      </h2>
     </div>
     <div class="faq-container">
       <h1>Frequently Asked Questions</h1>
@@ -55,27 +61,27 @@ import AccordianItem from './AccordianItem.vue';
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
-#home-container {
-  padding: 1.5rem;
-  text-align: center;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: auto;
-}
+  #home-container {
+    padding: 1.5rem;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+  }
 
-#home-container h1 {
-  color: #fff;
-}
+  #home-container h1 {
+    color: #fff;
+  }
 
-.faq-container {
-  margin-top: 8rem;
-}
+  .faq-container {
+    margin-top: 8rem;
+  }
 
-/* .faq-container h1 {
+  /* .faq-container h1 {
   
 } */
 </style>

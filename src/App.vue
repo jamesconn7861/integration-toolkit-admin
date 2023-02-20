@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRouter } from 'vue-router';
 import { useUtilStore } from './stores/utils';
-import LoadingComponent from './components/Loading.vue';
+import LoadingComponent from '@/components/loading/Loading.vue';
 
 const router = useRouter();
 

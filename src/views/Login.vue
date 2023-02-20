@@ -35,6 +35,9 @@ export default defineComponent({
           const { user, access_token } = res.data;
           useUtilStore().setUser(user);
           useUtilStore().setToken(access_token);
+          axiosInst.defaults.headers.common = {
+            Authorization: `bearer ${access_token}`,
+          };
 
           if (this.$route.redirectedFrom) {
             this.$router.push({ path: this.$route.redirectedFrom.path });

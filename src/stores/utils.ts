@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import axios, { type AxiosInstance, type CreateAxiosDefaults } from 'axios';
-import { useRoute } from 'vue-router';
+import axios, { type AxiosInstance } from 'axios';
+import MessageBox from '@/utils/messagebox';
 
 const _url: string =
   import.meta.env.MODE == 'development'
@@ -16,6 +16,7 @@ export const useUtilStore = defineStore('utils', {
     }) as AxiosInstance,
     _user: undefined as iUser | undefined,
     _token: undefined as string | undefined,
+    _msgBox: new MessageBox(),
   }),
   actions: {
     setUser(user: iUser | undefined) {
@@ -23,6 +24,18 @@ export const useUtilStore = defineStore('utils', {
     },
     setToken(token: string | undefined) {
       this._token = token;
+    },
+    async showTempMsg(
+      msg: string,
+      closeTime: number,
+      closeLabel?: string,
+      callback?: Function,
+    ) {
+      this._msgBox.show({ msg, closeTime, closeLabel, callback });
+    },
+
+    async showPermMsg(msg: string, closeLabel?: string, callback?: Function) {
+      this._msgBox.show({ msg, closeLabel, callback });
     },
   },
   getters: {
